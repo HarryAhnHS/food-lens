@@ -14,6 +14,16 @@
 		E3AA90972D08105600FD609E /* FoodLensTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA90962D08105600FD609E /* FoodLensTests.swift */; };
 		E3AA90A12D08105600FD609E /* FoodLensUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA90A02D08105600FD609E /* FoodLensUITests.swift */; };
 		E3AA90A32D08105600FD609E /* FoodLensUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA90A22D08105600FD609E /* FoodLensUITestsLaunchTests.swift */; };
+		E3AA90B32D0814A700FD609E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3AA90B22D0814A700FD609E /* GoogleService-Info.plist */; };
+		E3AA90B62D0816C100FD609E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E3AA90B52D0816C100FD609E /* FirebaseAuth */; };
+		E3AA90B82D0816C100FD609E /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = E3AA90B72D0816C100FD609E /* FirebaseCore */; };
+		E3AA90BA2D0816C100FD609E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E3AA90B92D0816C100FD609E /* FirebaseFirestore */; };
+		E3AA90BC2D0816C100FD609E /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E3AA90BB2D0816C100FD609E /* FirebaseStorage */; };
+		E3AA90BE2D081B5600FD609E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA90BD2D081B5600FD609E /* LoginView.swift */; };
+		E3AA90C12D081C0D00FD609E /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = E3AA90C02D081C0D00FD609E /* GoogleSignIn */; };
+		E3AA90C32D081C0D00FD609E /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E3AA90C22D081C0D00FD609E /* GoogleSignInSwift */; };
+		E3AA90C52D081D4300FD609E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA90C42D081D4300FD609E /* SignUpView.swift */; };
+		E3AA90C82D082B6900FD609E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E3AA90C72D082B6800FD609E /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +54,11 @@
 		E3AA909C2D08105600FD609E /* FoodLensUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodLensUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3AA90A02D08105600FD609E /* FoodLensUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodLensUITests.swift; sourceTree = "<group>"; };
 		E3AA90A22D08105600FD609E /* FoodLensUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodLensUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E3AA90B22D0814A700FD609E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E3AA90BD2D081B5600FD609E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		E3AA90C42D081D4300FD609E /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		E3AA90C62D08288C00FD609E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E3AA90C72D082B6800FD609E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +66,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3AA90C12D081C0D00FD609E /* GoogleSignIn in Frameworks */,
+				E3AA90B82D0816C100FD609E /* FirebaseCore in Frameworks */,
+				E3AA90BC2D0816C100FD609E /* FirebaseStorage in Frameworks */,
+				E3AA90C32D081C0D00FD609E /* GoogleSignInSwift in Frameworks */,
+				E3AA90B62D0816C100FD609E /* FirebaseAuth in Frameworks */,
+				E3AA90BA2D0816C100FD609E /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +95,7 @@
 		E3AA90792D08105400FD609E = {
 			isa = PBXGroup;
 			children = (
+				E3AA90C72D082B6800FD609E /* .gitignore */,
 				E3AA90842D08105400FD609E /* FoodLens */,
 				E3AA90952D08105600FD609E /* FoodLensTests */,
 				E3AA909F2D08105600FD609E /* FoodLensUITests */,
@@ -94,6 +116,11 @@
 		E3AA90842D08105400FD609E /* FoodLens */ = {
 			isa = PBXGroup;
 			children = (
+				E3AA90C62D08288C00FD609E /* Info.plist */,
+				E3AA90B22D0814A700FD609E /* GoogleService-Info.plist */,
+				E3AA90B12D08123400FD609E /* Views */,
+				E3AA90B02D0811F200FD609E /* ViewModels */,
+				E3AA90AF2D0811E800FD609E /* Models */,
 				E3AA90852D08105400FD609E /* FoodLensApp.swift */,
 				E3AA90872D08105400FD609E /* ContentView.swift */,
 				E3AA90892D08105600FD609E /* Assets.xcassets */,
@@ -127,6 +154,29 @@
 			path = FoodLensUITests;
 			sourceTree = "<group>";
 		};
+		E3AA90AF2D0811E800FD609E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E3AA90B02D0811F200FD609E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		E3AA90B12D08123400FD609E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E3AA90BD2D081B5600FD609E /* LoginView.swift */,
+				E3AA90C42D081D4300FD609E /* SignUpView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +193,14 @@
 			dependencies = (
 			);
 			name = FoodLens;
+			packageProductDependencies = (
+				E3AA90B52D0816C100FD609E /* FirebaseAuth */,
+				E3AA90B72D0816C100FD609E /* FirebaseCore */,
+				E3AA90B92D0816C100FD609E /* FirebaseFirestore */,
+				E3AA90BB2D0816C100FD609E /* FirebaseStorage */,
+				E3AA90C02D081C0D00FD609E /* GoogleSignIn */,
+				E3AA90C22D081C0D00FD609E /* GoogleSignInSwift */,
+			);
 			productName = FoodLens;
 			productReference = E3AA90822D08105400FD609E /* FoodLens.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +273,10 @@
 				Base,
 			);
 			mainGroup = E3AA90792D08105400FD609E;
+			packageReferences = (
+				E3AA90B42D0816C100FD609E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				E3AA90BF2D081BF200FD609E /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+			);
 			productRefGroup = E3AA90832D08105400FD609E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -231,8 +293,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3AA90C82D082B6900FD609E /* .gitignore in Resources */,
 				E3AA908D2D08105600FD609E /* Preview Assets.xcassets in Resources */,
 				E3AA908A2D08105600FD609E /* Assets.xcassets in Resources */,
+				E3AA90B32D0814A700FD609E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +321,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3AA90C52D081D4300FD609E /* SignUpView.swift in Sources */,
+				E3AA90BE2D081B5600FD609E /* LoginView.swift in Sources */,
 				E3AA90882D08105400FD609E /* ContentView.swift in Sources */,
 				E3AA90862D08105400FD609E /* FoodLensApp.swift in Sources */,
 			);
@@ -424,11 +490,11 @@
 				DEVELOPMENT_ASSET_PATHS = "\"FoodLens/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FoodLens/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -452,11 +518,11 @@
 				DEVELOPMENT_ASSET_PATHS = "\"FoodLens/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FoodLens/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -582,6 +648,58 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E3AA90B42D0816C100FD609E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.6.0;
+			};
+		};
+		E3AA90BF2D081BF200FD609E /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E3AA90B52D0816C100FD609E /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3AA90B42D0816C100FD609E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		E3AA90B72D0816C100FD609E /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3AA90B42D0816C100FD609E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		E3AA90B92D0816C100FD609E /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3AA90B42D0816C100FD609E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		E3AA90BB2D0816C100FD609E /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3AA90B42D0816C100FD609E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		E3AA90C02D081C0D00FD609E /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3AA90BF2D081BF200FD609E /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		E3AA90C22D081C0D00FD609E /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E3AA90BF2D081BF200FD609E /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E3AA907A2D08105400FD609E /* Project object */;
 }
