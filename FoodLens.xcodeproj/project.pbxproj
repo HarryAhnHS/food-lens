@@ -25,6 +25,13 @@
 		E3AA90C52D081D4300FD609E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA90C42D081D4300FD609E /* SignUpView.swift */; };
 		E3AA90C82D082B6900FD609E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E3AA90C72D082B6800FD609E /* .gitignore */; };
 		E3CEAC282D082E7D00AB1C6B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CEAC272D082E7D00AB1C6B /* HomeView.swift */; };
+		E3CEAC2A2D08335100AB1C6B /* BarcodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CEAC292D08335000AB1C6B /* BarcodeScannerView.swift */; };
+		E3CEAC2C2D08343200AB1C6B /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CEAC2B2D08343200AB1C6B /* MainTabView.swift */; };
+		E3CEAC2E2D083B5500AB1C6B /* BarcodeScannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CEAC2D2D083B5500AB1C6B /* BarcodeScannerViewModel.swift */; };
+		E3CEAC302D084B6B00AB1C6B /* ProductDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CEAC2F2D084B6B00AB1C6B /* ProductDetailsView.swift */; };
+		E3CEAC342D084F4900AB1C6B /* ProductSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CEAC332D084F4900AB1C6B /* ProductSummaryView.swift */; };
+		E3CEAC362D084F8100AB1C6B /* ProductIngredientsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CEAC352D084F8100AB1C6B /* ProductIngredientsListView.swift */; };
+		E3CEAC392D085BDF00AB1C6B /* Double++.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CEAC382D085BDF00AB1C6B /* Double++.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +68,13 @@
 		E3AA90C62D08288C00FD609E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E3AA90C72D082B6800FD609E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		E3CEAC272D082E7D00AB1C6B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		E3CEAC292D08335000AB1C6B /* BarcodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerView.swift; sourceTree = "<group>"; };
+		E3CEAC2B2D08343200AB1C6B /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		E3CEAC2D2D083B5500AB1C6B /* BarcodeScannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerViewModel.swift; sourceTree = "<group>"; };
+		E3CEAC2F2D084B6B00AB1C6B /* ProductDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsView.swift; sourceTree = "<group>"; };
+		E3CEAC332D084F4900AB1C6B /* ProductSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSummaryView.swift; sourceTree = "<group>"; };
+		E3CEAC352D084F8100AB1C6B /* ProductIngredientsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductIngredientsListView.swift; sourceTree = "<group>"; };
+		E3CEAC382D085BDF00AB1C6B /* Double++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double++.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +132,7 @@
 		E3AA90842D08105400FD609E /* FoodLens */ = {
 			isa = PBXGroup;
 			children = (
+				E3CEAC372D085BD400AB1C6B /* Extensions */,
 				E3AA90C62D08288C00FD609E /* Info.plist */,
 				E3AA90B22D0814A700FD609E /* GoogleService-Info.plist */,
 				E3AA90B12D08123400FD609E /* Views */,
@@ -166,6 +181,7 @@
 		E3AA90B02D0811F200FD609E /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				E3CEAC2D2D083B5500AB1C6B /* BarcodeScannerViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -176,8 +192,21 @@
 				E3AA90BD2D081B5600FD609E /* LoginView.swift */,
 				E3AA90C42D081D4300FD609E /* SignUpView.swift */,
 				E3CEAC272D082E7D00AB1C6B /* HomeView.swift */,
+				E3CEAC292D08335000AB1C6B /* BarcodeScannerView.swift */,
+				E3CEAC2B2D08343200AB1C6B /* MainTabView.swift */,
+				E3CEAC2F2D084B6B00AB1C6B /* ProductDetailsView.swift */,
+				E3CEAC332D084F4900AB1C6B /* ProductSummaryView.swift */,
+				E3CEAC352D084F8100AB1C6B /* ProductIngredientsListView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		E3CEAC372D085BD400AB1C6B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E3CEAC382D085BDF00AB1C6B /* Double++.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,11 +353,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3CEAC2A2D08335100AB1C6B /* BarcodeScannerView.swift in Sources */,
 				E3AA90C52D081D4300FD609E /* SignUpView.swift in Sources */,
 				E3AA90BE2D081B5600FD609E /* LoginView.swift in Sources */,
+				E3CEAC362D084F8100AB1C6B /* ProductIngredientsListView.swift in Sources */,
 				E3AA90882D08105400FD609E /* ContentView.swift in Sources */,
+				E3CEAC392D085BDF00AB1C6B /* Double++.swift in Sources */,
+				E3CEAC2C2D08343200AB1C6B /* MainTabView.swift in Sources */,
 				E3CEAC282D082E7D00AB1C6B /* HomeView.swift in Sources */,
+				E3CEAC342D084F4900AB1C6B /* ProductSummaryView.swift in Sources */,
+				E3CEAC2E2D083B5500AB1C6B /* BarcodeScannerViewModel.swift in Sources */,
 				E3AA90862D08105400FD609E /* FoodLensApp.swift in Sources */,
+				E3CEAC302D084B6B00AB1C6B /* ProductDetailsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,6 +528,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FoodLens/Preview Content\"";
+				DEVELOPMENT_TEAM = 2KCA4V2B42;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FoodLens/Info.plist;
@@ -520,6 +557,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FoodLens/Preview Content\"";
+				DEVELOPMENT_TEAM = 2KCA4V2B42;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FoodLens/Info.plist;

@@ -42,7 +42,7 @@ struct FoodLensApp: App {
     var body: some Scene {
         WindowGroup {
             if appState.isLoggedIn {
-                HomeView()
+                MainTabView()
                     .environmentObject(appState)
             } else {
                 LoginView()

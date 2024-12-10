@@ -11,12 +11,19 @@ import FirebaseAuth
 
 struct HomeView: View {
     @EnvironmentObject var appState: AppState
+    @State private var userEmail: String? = Auth.auth().currentUser?.email
 
     var body: some View {
         VStack {
-            Text("Welcome to FoodLens!")
-                .font(.largeTitle)
-                .padding()
+            if let email = userEmail {
+                Text("Hi \(email)!")
+                    .font(.title)
+                    .padding()
+            } else {
+                Text("Hi there!")
+                    .font(.title)
+                    .padding()
+            }
 
             Button(action: logout) {
                 Text("Log Out")
@@ -34,7 +41,7 @@ struct HomeView: View {
             try Auth.auth().signOut()
             appState.isLoggedIn = false
         } catch let signOutError as NSError {
-            print("Error signing out: %@", signOutError)
+            print("Error signing out: \(signOutError.localizedDescription)")
         }
     }
 }
