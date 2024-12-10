@@ -13,6 +13,7 @@ import GoogleSignIn
 import GoogleSignInSwift
 
 struct LoginView: View {
+    @EnvironmentObject var appState: AppState // login state
     @State private var email = ""
     @State private var password = ""
     @State private var showError = false
@@ -22,7 +23,7 @@ struct LoginView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
-                Text("Welcome to FoodLens")
+                Text("Login to FoodLens")
                     .font(.largeTitle)
                     .fontWeight(.bold)
 
@@ -86,6 +87,7 @@ struct LoginView: View {
                 showError = true
             } else {
                 isLoggedIn = true
+                appState.isLoggedIn = true
                 print("User logged in with email: \(authResult?.user.email ?? "")")
             }
         }
@@ -123,9 +125,12 @@ struct LoginView: View {
 
             // Sign in to Firebase with the credential
             Auth.auth().signIn(with: credential) { authResult, error in
+                print("Firebase Auth Result: \(authResult?.user.email ?? "No user email")")
                 if let error = error {
-                    print("Firebase Sign-In error: \(error.localizedDescription)")
+                    errorMessage = error.localizedDescription
+                    showError = true
                 } else {
+                    appState.isLoggedIn = true
                     print("User signed in: \(authResult?.user.email ?? "No Email")")
                 }
             }

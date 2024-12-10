@@ -7,6 +7,22 @@
 
 import SwiftUI
 import FirebaseCore
+import Foundation
+import Combine
+
+class AppState: ObservableObject {
+    @Published var isLoggedIn: Bool {
+        didSet {
+            UserDefaults.standard.set(isLoggedIn, forKey: "isLoggedIn")
+            print("isLoggedIn updated to: \(isLoggedIn)")
+            // store logged
+        }
+    }
+
+    init() {
+        self.isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn") // initialize to false, unless already in defaults
+    }
+}
 
 class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
@@ -20,11 +36,18 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct FoodLensApp: App {
+    @StateObject var appState = AppState()
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if appState.isLoggedIn {
+                HomeView()
+                    .environmentObject(appState)
+            } else {
+                LoginView()
+                    .environmentObject(appState)
+            }
         }
     }
 }

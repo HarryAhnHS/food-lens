@@ -24,6 +24,7 @@
 		E3AA90C32D081C0D00FD609E /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E3AA90C22D081C0D00FD609E /* GoogleSignInSwift */; };
 		E3AA90C52D081D4300FD609E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA90C42D081D4300FD609E /* SignUpView.swift */; };
 		E3AA90C82D082B6900FD609E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E3AA90C72D082B6800FD609E /* .gitignore */; };
+		E3CEAC282D082E7D00AB1C6B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CEAC272D082E7D00AB1C6B /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		E3AA90C42D081D4300FD609E /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		E3AA90C62D08288C00FD609E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E3AA90C72D082B6800FD609E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		E3CEAC272D082E7D00AB1C6B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +175,7 @@
 			children = (
 				E3AA90BD2D081B5600FD609E /* LoginView.swift */,
 				E3AA90C42D081D4300FD609E /* SignUpView.swift */,
+				E3CEAC272D082E7D00AB1C6B /* HomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 				E3AA90C52D081D4300FD609E /* SignUpView.swift in Sources */,
 				E3AA90BE2D081B5600FD609E /* LoginView.swift in Sources */,
 				E3AA90882D08105400FD609E /* ContentView.swift in Sources */,
+				E3CEAC282D082E7D00AB1C6B /* HomeView.swift in Sources */,
 				E3AA90862D08105400FD609E /* FoodLensApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
