@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SearchHistoryView: View {
+    @EnvironmentObject var searchHistoryViewModel : SearchHistoryViewModel
     
     let searches : [UserSearch]
     let products : [Product]
@@ -22,6 +23,10 @@ struct SearchHistoryView: View {
                 List(products) { product in
                     SearchItemView(product: product)
                         .padding(.vertical, 8)
+                }
+                .refreshable {
+                    searchHistoryViewModel.fetchSearches()
+                    // Refreshable option - manually refresh to directly reflect changes
                 }
             }
         }
