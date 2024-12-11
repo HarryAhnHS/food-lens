@@ -45,6 +45,7 @@ struct FoodLensApp: App {
         WindowGroup {
             if appState.isLoggedIn {
                 MainTabView()
+                    .environmentObject(appState)
                     .environmentObject(searchHistoryViewModel)
             } else {
                 LoginView()

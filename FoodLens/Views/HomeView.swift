@@ -20,10 +20,7 @@ struct HomeView: View {
                 HStack {
                     if let email = Auth.auth().currentUser?.email {
                         Text("Hi \(email)!")
-                            .font(.title)
-                    } else {
-                        Text("Welcome to FoodLens!")
-                            .font(.title)
+                            .font(.headline)
                     }
                     Spacer()
                     Button(action: logout) {
@@ -36,28 +33,80 @@ struct HomeView: View {
                     }
                 }
                 .padding()
+                
+                Divider()
+                
+                // Logo / title
+                Text("FoodLens")
+                    .font(.title)
+                
+                Spacer()
+                
+                // Info here
+                VStack(spacing: 12) {
+                    /* "Your go-to grocery shopping buddy etc.
+                    // Simple Instructions, go to scanner tab and start scanning
+                    // Find your search history and saved searches below!" */
+                    VStack(spacing: 16) {
+                        // App Description
+                        Text("Your Go-To Grocery Shopping Tool")
+                            .font(.headline)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal)
+                        Text("Get Quick Nutritional Information and Analysis By Scanning Product Barcode")
+                            .font(.body)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal)
+
+                        // Instructions
+                        VStack(alignment: .leading, spacing: 8) {
+                            HStack(alignment: .top) {
+                                Image(systemName: "1.circle")
+                                    .foregroundColor(.blue)
+                                Text("Go to the scanner tab and start scanning barcodes on your groceries.")
+                                    .font(.body)
+                            }
+                            HStack(alignment: .top) {
+                                Image(systemName: "2.circle")
+                                    .foregroundColor(.blue)
+                                Text("View your search history to revisit scanned items anytime.")
+                                    .font(.body)
+                            }
+                            HStack(alignment: .top) {
+                                Image(systemName: "3.circle")
+                                    .foregroundColor(.blue)
+                                Text("Save items for quick access.")
+                                    .font(.body)
+                            }
+                        }
+                    }
+                    .padding()
+                    .background(Color(UIColor.secondarySystemBackground))
+                    .cornerRadius(8)
+                }
+                
+                
+                Spacer()
 
                 // Navigation Buttons
                 VStack(spacing: 20) {
-                    NavigationLink(destination: SearchHistoryView(searches: searchHistoryViewModel.searches)) {
+                    NavigationLink(destination: SearchHistoryView(searches: searchHistoryViewModel.searches, products: searchHistoryViewModel.products)) {
                         Text("See Search History")
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(Color.green)
+                            .background(Color.orange)
                             .foregroundColor(.white)
                             .cornerRadius(8)
                     }
-                    .padding(.horizontal)
 
-                    NavigationLink(destination: SavedSearchView(searches: searchHistoryViewModel.searches)) {
+                    NavigationLink(destination: SavedSearchView(searches: searchHistoryViewModel.searches, products: searchHistoryViewModel.products)) {
                         Text("See Saved Searches")
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(Color.purple)
+                            .background(Color.blue)
                             .foregroundColor(.white)
                             .cornerRadius(8)
                     }
-                    .padding(.horizontal)
                 }
 
                 Spacer()

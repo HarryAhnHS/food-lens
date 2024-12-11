@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E30031A72D09576A00BD9866 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E30031A62D09576A00BD9866 /* Kingfisher */; };
 		E3AA90862D08105400FD609E /* FoodLensApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA90852D08105400FD609E /* FoodLensApp.swift */; };
 		E3AA90882D08105400FD609E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA90872D08105400FD609E /* ContentView.swift */; };
 		E3AA908A2D08105600FD609E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3AA90892D08105600FD609E /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 		E3CEAC462D08F76300AB1C6B /* SavedSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CEAC452D08F76300AB1C6B /* SavedSearchView.swift */; };
 		E3CEAC482D08F87100AB1C6B /* SearchHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CEAC472D08F87100AB1C6B /* SearchHistoryViewModel.swift */; };
 		E3CEAC4A2D08FCE300AB1C6B /* SearchItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CEAC492D08FCE300AB1C6B /* SearchItemView.swift */; };
+		E3CEAC4E2D093AF000AB1C6B /* Date++.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CEAC4D2D093AF000AB1C6B /* Date++.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +89,7 @@
 		E3CEAC452D08F76300AB1C6B /* SavedSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedSearchView.swift; sourceTree = "<group>"; };
 		E3CEAC472D08F87100AB1C6B /* SearchHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryViewModel.swift; sourceTree = "<group>"; };
 		E3CEAC492D08FCE300AB1C6B /* SearchItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemView.swift; sourceTree = "<group>"; };
+		E3CEAC4D2D093AF000AB1C6B /* Date++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date++.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +99,7 @@
 			files = (
 				E3AA90C12D081C0D00FD609E /* GoogleSignIn in Frameworks */,
 				E3AA90B82D0816C100FD609E /* FirebaseCore in Frameworks */,
+				E30031A72D09576A00BD9866 /* Kingfisher in Frameworks */,
 				E3AA90BC2D0816C100FD609E /* FirebaseStorage in Frameworks */,
 				E3AA90C32D081C0D00FD609E /* GoogleSignInSwift in Frameworks */,
 				E3AA90B62D0816C100FD609E /* FirebaseAuth in Frameworks */,
@@ -195,7 +199,7 @@
 		E3AA90B02D0811F200FD609E /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				E3CEAC402D08F50500AB1C6B /* Helpers */,
+				E3CEAC402D08F50500AB1C6B /* APIControllers */,
 				E3CEAC2D2D083B5500AB1C6B /* BarcodeScannerViewModel.swift */,
 				E3CEAC472D08F87100AB1C6B /* SearchHistoryViewModel.swift */,
 			);
@@ -223,16 +227,17 @@
 			isa = PBXGroup;
 			children = (
 				E3CEAC382D085BDF00AB1C6B /* Double++.swift */,
+				E3CEAC4D2D093AF000AB1C6B /* Date++.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		E3CEAC402D08F50500AB1C6B /* Helpers */ = {
+		E3CEAC402D08F50500AB1C6B /* APIControllers */ = {
 			isa = PBXGroup;
 			children = (
 				E3CEAC412D08F52800AB1C6B /* FoodAPI.swift */,
 			);
-			path = Helpers;
+			path = APIControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +263,7 @@
 				E3AA90BB2D0816C100FD609E /* FirebaseStorage */,
 				E3AA90C02D081C0D00FD609E /* GoogleSignIn */,
 				E3AA90C22D081C0D00FD609E /* GoogleSignInSwift */,
+				E30031A62D09576A00BD9866 /* Kingfisher */,
 			);
 			productName = FoodLens;
 			productReference = E3AA90822D08105400FD609E /* FoodLens.app */;
@@ -334,6 +340,7 @@
 			packageReferences = (
 				E3AA90B42D0816C100FD609E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				E3AA90BF2D081BF200FD609E /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				E30031A52D09576A00BD9866 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = E3AA90832D08105400FD609E /* Products */;
 			projectDirPath = "";
@@ -385,6 +392,7 @@
 				E3CEAC362D084F8100AB1C6B /* ProductIngredientsListView.swift in Sources */,
 				E3CEAC422D08F52800AB1C6B /* FoodAPI.swift in Sources */,
 				E3CEAC462D08F76300AB1C6B /* SavedSearchView.swift in Sources */,
+				E3CEAC4E2D093AF000AB1C6B /* Date++.swift in Sources */,
 				E3CEAC442D08F75000AB1C6B /* SearchHistoryView.swift in Sources */,
 				E3AA90882D08105400FD609E /* ContentView.swift in Sources */,
 				E3CEAC392D085BDF00AB1C6B /* Double++.swift in Sources */,
@@ -724,6 +732,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E30031A52D09576A00BD9866 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.1.2;
+			};
+		};
 		E3AA90B42D0816C100FD609E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -743,6 +759,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E30031A62D09576A00BD9866 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E30031A52D09576A00BD9866 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		E3AA90B52D0816C100FD609E /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E3AA90B42D0816C100FD609E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct SearchHistoryView: View {
+    
     let searches : [UserSearch]
+    let products : [Product]
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -17,12 +19,12 @@ struct SearchHistoryView: View {
                     .foregroundColor(.gray)
             } 
             else {
-                List(searches) { search in
-                    SearchItemView(barcode: search.barcode, timestamp: search.timestamp)
+                List(products) { product in
+                    SearchItemView(product: product)
                         .padding(.vertical, 8)
                 }
             }
         }
-        .navigationTitle("Search History")
+        .navigationTitle("Your Search History")
     }
 }

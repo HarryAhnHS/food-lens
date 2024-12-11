@@ -1,10 +1,16 @@
+//
+//  BarcodeScannerView.swift
+//  FoodLens
+//
+//  Created by Harry Ahn on 9/12/2024.
+//
 import SwiftUI
 import AVFoundation
 
 struct BarcodeScannerView: View {
     @StateObject private var viewModel = BarcodeScannerViewModel()
-    @EnvironmentObject private var searchHistoryViewModel : SearchHistoryViewModel
-    
+    @EnvironmentObject private var searchHistoryViewModel: SearchHistoryViewModel
+
     @State private var hasPermission = false
     @State private var scannedProduct: Product?
 
@@ -53,67 +59,62 @@ struct BarcodeScannerView: View {
                 }
                 .frame(maxHeight: .infinity)
 
-                // Bottom Bar
-                VStack {
+                // Bottom Bar - Search results -> navigation link to product detail page and reset button
+                VStack(spacing: 8) {
                     if let product = scannedProduct {
-                        HStack {
-                            if let imageUrl = product.imageUrl, let url = URL(string: imageUrl) {
-                                AsyncImage(url: url) { image in
-                                    image
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: 50, height: 50)
-                                        .clipShape(RoundedRectangle(cornerRadius: 8))
-                                } placeholder: {
-                                    ProgressView()
-                                        .frame(width: 50, height: 50)
-                                }
-                            } else {
-                                Text("No Image Available")
-                                    .foregroundColor(.gray)
-                            }
-                            VStack(alignment: .leading) {
-                                if let productName = product.productName {
-                                    Text(productName)
-                                        .font(.title)
-                                        .bold()
-                                }
-                                if let brands = product.brands {
-                                    Text(brands)
-                                        .font(.subheadline)
-                                        .foregroundColor(.gray)
-                                        .lineLimit(1)
-                                }
-                            }
-                            Spacer()
-                            NavigationLink(destination: ProductDetailsView(product: product)) {
+                        Text("Search Results:")
+                            .font(.headline)
+                            .padding(.vertical)
+
+                        VStack {
+                            HStack {
+                                SearchItemView(product: product)
+                                Spacer()
+                                // Chevron Icon
                                 Image(systemName: "chevron.right")
-                                    .font(.system(size: 20))
-                                    .foregroundColor(.gray)
+                                    .font(.system(size: 18, weight: .medium))
+                                    .foregroundColor(.blue)
+                            }
+                            .padding()
+                            .background(Color(UIColor.secondarySystemBackground))
+                            .cornerRadius(8)
+                        }
+                        .padding()
+                        
+
+                        Button(action: resetScanning) {
+                            Text("Reset")
+                                .font(.body)
+                                .padding(.vertical)
+                                .frame(maxWidth: .infinity)
+                                .background(Color.red)
+                                .foregroundColor(Color.white)
+                                .cornerRadius(8)
+                        }
+                        .padding()
+                    } else {
+                        HStack(alignment: .top, spacing: 8) {
+                            Image(systemName: "info.circle")
+                                .foregroundColor(.blue)
+                                .font(.title2) // Adjust size as needed for the icon
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("Scan a barcode to get started.")
+                                    .font(.body)
+                                    .foregroundColor(.primary)
+                                Text("If a barcode is successfully read in the camera feed, results will automatically pop up here.")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
                             }
                         }
                         .padding()
-                        .background(Color(UIColor.systemBackground))
-                        .cornerRadius(12)
-                        .shadow(color: .gray.opacity(0.5), radius: 5, x: 0, y: 2)
-                    } else {
-                        Text("Scan a barcode to get started.")
-                            .foregroundColor(.gray)
-                            .padding()
-                    }
-
-                    Button(action: resetScanning) {
-                        Text("Reset and Keep Scanning")
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.red)
-                            .foregroundColor(.white)
-                            .cornerRadius(8)
-                            .padding(.horizontal)
+                        .frame(maxWidth: .infinity)
+                        .cornerRadius(8)
                     }
                 }
-                .padding(.vertical)
-                .background(Color(UIColor.secondarySystemBackground))
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 20)
+                .background(Color(UIColor.systemBackground))
+                .cornerRadius(8)
             }
             .onAppear {
                 viewModel.checkCameraPermission { granted in
@@ -125,23 +126,24 @@ struct BarcodeScannerView: View {
                 }
             }
             .onChange(of: viewModel.scannedCode) {
-                if let code = viewModel.scannedCode {
-                    // Check if the code is already in the search history
-                    let isDuplicate = searchHistoryViewModel.searches.contains { $0.barcode == code }
-                    if (!isDuplicate) {
-                        fetchProductInfo(for: code) { product in
-                            if let product = product {
-                                DispatchQueue.main.async {
-                                    self.scannedProduct = product
-                                    // Here I need to update searchHistoryViewModel env object to include the add the product into search history
-                                    
-                                    searchHistoryViewModel.addSearch(barcode: product.code, isSaved: false)
-                                }
-                            }
+                handleScan()
+            }
+        }
+    }
+
+    private func handleScan() {
+        if let code = viewModel.scannedCode {
+            fetchProductInfo(for: code) { product in
+                if let product = product {
+                    DispatchQueue.main.async {
+                        self.scannedProduct = product
+                        // Check if the code is already in the search history
+                        let isDuplicate = searchHistoryViewModel.searches.contains { $0.barcode == code }
+                        if !isDuplicate {
+                            searchHistoryViewModel.addSearch(barcode: product.code, isSaved: false)
+                        } else {
+                            print("Duplicate scan ignored for barcode: \(code)")
                         }
-                    }
-                    else {
-                        print("Duplicate scan ignored for barcode: \(code)")
                     }
                 }
             }
@@ -151,6 +153,7 @@ struct BarcodeScannerView: View {
     // Resets the scanning process
     private func resetScanning() {
         scannedProduct = nil
+        viewModel.scannedCode = nil
         viewModel.startScanning()
     }
 }

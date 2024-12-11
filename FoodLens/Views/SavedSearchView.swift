@@ -9,20 +9,22 @@ import SwiftUI
 
 struct SavedSearchView: View {
     let searches : [UserSearch]
+    let products : [Product]
 
     var body: some View {
         VStack(alignment: .leading) {
-            let savedSearches = searches.filter { $0.isSaved }
-            if savedSearches.isEmpty {
+            let savedProducts = products.filter { $0.isSaved }
+
+            if savedProducts.isEmpty {
                 Text("No saved searches available.")
                     .foregroundColor(.gray)
             } else {
-                List(savedSearches) { search in
-                    SearchItemView(barcode: search.barcode, timestamp: search.timestamp)
+                List(savedProducts) { product in
+                    SearchItemView(product: product)
                         .padding(.vertical, 8)
                 }
             }
         }
-        .navigationTitle("Saved Searches")
+        .navigationTitle("Your Saved Searches")
     }
 }
