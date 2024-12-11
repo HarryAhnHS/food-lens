@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 import FirebaseCore
 import Foundation
 import Combine
@@ -25,25 +26,26 @@ class AppState: ObservableObject {
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-  func application(_ application: UIApplication,
+    func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     FirebaseApp.configure()
-
     return true
-  }
+    }
 }
 
 
 @main
 struct FoodLensApp: App {
     @StateObject var appState = AppState()
+    @StateObject private var searchHistoryViewModel = SearchHistoryViewModel();
+    
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     var body: some Scene {
         WindowGroup {
             if appState.isLoggedIn {
                 MainTabView()
-                    .environmentObject(appState)
+                    .environmentObject(searchHistoryViewModel)
             } else {
                 LoginView()
                     .environmentObject(appState)

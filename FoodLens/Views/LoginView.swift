@@ -18,7 +18,6 @@ struct LoginView: View {
     @State private var password = ""
     @State private var showError = false
     @State private var errorMessage = ""
-    @State private var isLoggedIn = false
 
     var body: some View {
         NavigationView {
@@ -79,21 +78,21 @@ struct LoginView: View {
         }
     }
 
-    // MARK: - Email/Password Login
+    // Email/Password Login
     func loginWithEmailPassword() {
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             if let error = error {
                 errorMessage = error.localizedDescription
                 showError = true
             } else {
-                isLoggedIn = true
                 appState.isLoggedIn = true
+                handleUserLogin() // Update firebase if need
                 print("User logged in with email: \(authResult?.user.email ?? "")")
             }
         }
     }
 
-    // MARK: - Google Sign-In
+    // Google Sign-In
     func loginWithGoogle() {
         guard let clientID = FirebaseApp.app()?.options.clientID else {
             print("Missing clientID")
@@ -131,6 +130,7 @@ struct LoginView: View {
                     showError = true
                 } else {
                     appState.isLoggedIn = true
+                    handleUserLogin() // Update firebase if need
                     print("User signed in: \(authResult?.user.email ?? "No Email")")
                 }
             }
@@ -138,13 +138,49 @@ struct LoginView: View {
     }
 }
 
-// MARK: - Helper Functions
+// Helper Functions
 func getRootViewController() -> UIViewController {
     guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
           let rootVC = windowScene.windows.first?.rootViewController else {
         fatalError("Unable to fetch the root view controller.")
     }
     return rootVC
+}
+
+// Helper to run after each login or signup -> check if user's entry exists in users collection, if not create new one
+func handleUserLogin() {
+    guard let user = Auth.auth().currentUser else {
+        print("No authenticated user")
+        return
+    }
+
+    let db = Firestore.firestore()
+    let userRef = db.collection("users").document(user.uid)
+
+    // Check if the document exists
+    userRef.getDocument { (document, error) in
+        if let error = error {
+            print("Error fetching user document: \(error.localizedDescription)")
+            return
+        }
+
+        if let document = document, document.exists {
+            // User document already exists
+            print("User document exists")
+        } else {
+            // Create a new document for the user
+            userRef.setData([
+                "email": user.email ?? "",
+                "createdAt": FieldValue.serverTimestamp()
+            ]) { error in
+                if let error = error {
+                    print("Error creating user document: \(error.localizedDescription)")
+                } else {
+                    print("User document successfully created")
+                }
+            }
+        }
+    }
 }
 
 #Preview {

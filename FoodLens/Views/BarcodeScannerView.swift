@@ -3,6 +3,8 @@ import AVFoundation
 
 struct BarcodeScannerView: View {
     @StateObject private var viewModel = BarcodeScannerViewModel()
+    @EnvironmentObject private var searchHistoryViewModel : SearchHistoryViewModel
+    
     @State private var hasPermission = false
     @State private var scannedProduct: Product?
 
@@ -122,50 +124,28 @@ struct BarcodeScannerView: View {
                     }
                 }
             }
-            .onChange(of: viewModel.scannedCode) { newCode in
-                if let code = newCode {
-                    fetchProductInfo(for: code) { product in
-                        if let product = product {
-                            DispatchQueue.main.async {
-                                self.scannedProduct = product
+            .onChange(of: viewModel.scannedCode) {
+                if let code = viewModel.scannedCode {
+                    // Check if the code is already in the search history
+                    let isDuplicate = searchHistoryViewModel.searches.contains { $0.barcode == code }
+                    if (!isDuplicate) {
+                        fetchProductInfo(for: code) { product in
+                            if let product = product {
+                                DispatchQueue.main.async {
+                                    self.scannedProduct = product
+                                    // Here I need to update searchHistoryViewModel env object to include the add the product into search history
+                                    
+                                    searchHistoryViewModel.addSearch(barcode: product.code, isSaved: false)
+                                }
                             }
                         }
+                    }
+                    else {
+                        print("Duplicate scan ignored for barcode: \(code)")
                     }
                 }
             }
         }
-    }
-
-    // Fetch product info directly in BarcodeScannerView
-    private func fetchProductInfo(for barcode: String, completion: @escaping (Product?) -> Void) {
-        let API_URL = "https://world.openfoodfacts.org/api/v0/product/"
-        guard let url = URL(string: "\(API_URL)\(barcode).json") else {
-            print("Invalid API URL")
-            completion(nil)
-            return
-        }
-
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
-                print("Failed to fetch data: \(error.localizedDescription)")
-                completion(nil)
-                return
-            }
-
-            guard let data = data else {
-                print("No data received")
-                completion(nil)
-                return
-            }
-
-            do {
-                let productResponse = try JSONDecoder().decode(ProductResponse.self, from: data)
-                completion(productResponse.product)
-            } catch {
-                print("Failed to decode response: \(error.localizedDescription)")
-                completion(nil)
-            }
-        }.resume()
     }
 
     // Resets the scanning process
