@@ -13,38 +13,69 @@ struct SignUpView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var showError = false
+    @State private var showSuccess = false
     @State private var errorMessage = ""
+    @State private var isRedirectingToLogin = false
 
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 30) {
+            // Title
             Text("Create an Account")
-                .font(.largeTitle)
-                .fontWeight(.bold)
+                .font(.system(size: 28, weight: .bold))
+                .foregroundColor(.primary)
 
-            // Email Field
-            TextField("Email", text: $email)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .autocapitalization(.none)
+            // Email Input
+            VStack(alignment: .leading, spacing: 10) {
+                Text("Email")
+                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundColor(.secondary)
+                TextField("Enter your email", text: $email)
+                    .padding()
+                    .background(Color(.systemGray6))
+                    .cornerRadius(8)
+                    .autocapitalization(.none)
+                    .keyboardType(.emailAddress)
+            }
 
-            // Password Field
-            SecureField("Password", text: $password)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+            // Password Input
+            VStack(alignment: .leading, spacing: 10) {
+                Text("Password")
+                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundColor(.secondary)
+                SecureField("Enter your password", text: $password)
+                    .padding()
+                    .background(Color(.systemGray6))
+                    .cornerRadius(8)
+            }
 
             // Sign Up Button
             Button(action: {
                 signUpWithEmailPassword()
             }) {
                 Text("Sign Up")
-                    .foregroundColor(.white)
-                    .padding()
+                    .font(.system(size: 18, weight: .semibold))
                     .frame(maxWidth: .infinity)
-                    .background(Color.green)
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
                     .cornerRadius(10)
+                    .shadow(color: .gray.opacity(0.3), radius: 5, x: 0, y: 5)
             }
+            
+            Spacer()
         }
         .padding()
         .alert(isPresented: $showError) {
             Alert(title: Text("Error"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
+        }
+        .alert(isPresented: $showSuccess) {
+            Alert(
+                title: Text("Success"),
+                message: Text("Your account has been created successfully"),
+                dismissButton: .default(Text("OK"), action: {
+                    isRedirectingToLogin = true
+                })
+            )
         }
     }
 
@@ -54,6 +85,7 @@ struct SignUpView: View {
                 errorMessage = error.localizedDescription
                 showError = true
             } else {
+                showSuccess = true
                 print("User signed up: \(authResult?.user.email ?? "")")
             }
         }

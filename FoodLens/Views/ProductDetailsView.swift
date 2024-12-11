@@ -6,8 +6,9 @@
 //
 
 import SwiftUI
+import Social
 
-// See ProductDetailsModel for decodable objects for json parse
+// See ProductDetailsModel for decodable objects for json parses
 
 struct ProductDetailsView: View {
     let product: Product
@@ -19,8 +20,9 @@ struct ProductDetailsView: View {
             VStack(alignment: .leading, spacing: 16) {
                 // Product Meta Details
                 productImageSection
-                productNameAndBrandSection
+                productHeadSection
                 saveButtonSection
+                shareButtonSection
 
                 // Ingredients Button
                 if let ingredients = product.ingredients {
@@ -96,7 +98,7 @@ struct ProductDetailsView: View {
         .padding(.bottom, 8)
     }
 
-    private var productNameAndBrandSection: some View {
+    private var productHeadSection: some View {
         VStack(alignment: .leading, spacing: 8) {
             if let productName = product.productName {
                 Text(productName)
@@ -122,7 +124,22 @@ struct ProductDetailsView: View {
             }
             .padding()
             .frame(maxWidth: .infinity)
-            .background(isSaved ? Color.orange : Color.blue)
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .cornerRadius(8)
+        }
+        .frame(maxWidth: .infinity)
+    }
+    
+    private var shareButtonSection: some View {
+        Button(action: shareProduct) {
+            HStack {
+                Image(systemName: "square.and.arrow.up")
+                Text("Share")
+            }
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(Color.orange)
             .foregroundColor(.white)
             .cornerRadius(8)
         }
@@ -152,7 +169,6 @@ struct ProductDetailsView: View {
             Text("Scores")
                 .font(.headline)
                 .frame(maxWidth: .infinity)
-
             HStack {
                 if let novaGroup = novaGroup {
                     scoreItem(label: "NOVA Group", value: "\(novaGroup)", color: novaGroup <= 2 ? .green : .red)
@@ -174,8 +190,8 @@ struct ProductDetailsView: View {
             }
         }
         .padding()
-        .cornerRadius(8)
         .background(Color(UIColor.secondarySystemBackground))
+        .cornerRadius(8)
         .frame(maxWidth: .infinity)
     }
 
@@ -273,4 +289,34 @@ struct ProductDetailsView: View {
         searchHistoryViewModel.toggleSave(search: search)
         isSaved.toggle()
     }
+    
+    // Helper function to share using SocialKit Framework
+    func shareProduct() {
+        guard let productName = product.productName else { return }
+        // Multiline String as share content
+        let shareContent = """
+        🌟 I just scanned \(productName) with FoodLens!
+        \(product.nutriments?.energyKcal.map { "Calories: \($0) kcal" } ?? "")
+        \(product.ecoscoreGrade.map { "Eco-Score: \($0.uppercased())" } ?? "")
+        \(product.nutriscoreGrade.map { "Nutri-Score: \($0.uppercased())" } ?? "")
+        
+        Be best equipped for your purchase with FoodLens!
+        """
+
+        var activityItems: [Any] = [shareContent]
+        
+        // Add product image if exist
+        if let imageUrl = product.imageUrl, let url = URL(string: imageUrl), let imageData = try? Data(contentsOf: url), let image = UIImage(data: imageData) {
+            activityItems.append(image)
+        }
+
+        let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+
+        // Present the UIActivityViewController 
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let rootViewController = windowScene.windows.first?.rootViewController {
+            rootViewController.present(activityVC, animated: true, completion: nil)
+        }
+    }
+
 }

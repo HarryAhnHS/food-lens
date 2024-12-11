@@ -21,40 +21,67 @@ struct LoginView: View {
 
     var body: some View {
         NavigationView {
-            VStack(spacing: 20) {
+            VStack(spacing: 30) {
+                // Title
                 Text("Login to FoodLens")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
+                    .font(.system(size: 28, weight: .bold))
+                    .foregroundColor(.primary)
 
                 // Email Field
-                TextField("Email", text: $email)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .autocapitalization(.none)
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("Email")
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(.secondary)
+                    TextField("Enter your email", text: $email)
+                        .padding()
+                        .background(Color(.systemGray6))
+                        .cornerRadius(8)
+                        .autocapitalization(.none)
+                        .keyboardType(.emailAddress)
+                }
 
                 // Password Field
-                SecureField("Password", text: $password)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("Password")
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(.secondary)
+                    SecureField("Enter your password", text: $password)
+                        .padding()
+                        .background(Color(.systemGray6))
+                        .cornerRadius(8)
+                }
 
                 // Login Button
                 Button(action: {
                     loginWithEmailPassword()
                 }) {
-                    Text("Login")
-                        .foregroundColor(.white)
-                        .padding()
+                    Text("Log In")
+                        .font(.system(size: 18, weight: .semibold))
                         .frame(maxWidth: .infinity)
+                        .padding()
                         .background(Color.blue)
+                        .foregroundColor(.white)
                         .cornerRadius(10)
+                        .shadow(color: .gray.opacity(0.3), radius: 5, x: 0, y: 5)
                 }
 
-                // Sign Up Button
+                // Link to Sign Up page
                 NavigationLink(destination: SignUpView()) {
-                    Text("Don't have an account? Sign Up")
-                        .font(.footnote)
-                        .foregroundColor(.blue)
+                    Text("Create An Account")
+                        .font(.system(size: 18, weight: .semibold))
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.orange)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                        .shadow(color: .gray.opacity(0.3), radius: 5, x: 0, y: 5)
                 }
 
                 Divider()
+                
+                Text("Or")
+                    .font(.caption)
+                    .multilineTextAlignment(.center)
 
                 // Google Sign-In Button
                 Button(action: {
@@ -62,13 +89,15 @@ struct LoginView: View {
                 }) {
                     HStack {
                         Image(systemName: "globe")
-                        Text("Sign in with Google")
+                        Text("Sign In with Google")
                     }
-                    .foregroundColor(.white)
+                    .font(.system(size: 18, weight: .semibold))
                     .padding()
                     .frame(maxWidth: .infinity)
                     .background(Color.red)
+                    .foregroundColor(.white)
                     .cornerRadius(10)
+                    .shadow(color: .gray.opacity(0.3), radius: 5, x: 0, y: 5)
                 }
             }
             .padding()
@@ -137,6 +166,7 @@ struct LoginView: View {
         }
     }
 }
+
 
 // Helper Functions
 func getRootViewController() -> UIViewController {

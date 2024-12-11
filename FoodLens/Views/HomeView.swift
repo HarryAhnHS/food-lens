@@ -30,15 +30,22 @@ struct HomeView: View {
                             .background(Color.blue)
                             .foregroundColor(.white)
                             .cornerRadius(8)
+                            .font(.callout)
                     }
                 }
-                .padding()
+                .padding(.horizontal)
                 
                 Divider()
                 
-                // Logo / title
-                Text("FoodLens")
-                    .font(.title)
+                Spacer()
+                
+                VStack {
+                    Text("FoodLens")
+                        .font(.largeTitle)
+                        Text("Your Go-To Grocery Shopping Tool")
+                            .font(.subheadline)
+                            .multilineTextAlignment(.leading)
+                }
                 
                 Spacer()
                 
@@ -49,14 +56,9 @@ struct HomeView: View {
                     // Find your search history and saved searches below!" */
                     VStack(spacing: 16) {
                         // App Description
-                        Text("Your Go-To Grocery Shopping Tool")
-                            .font(.headline)
-                            .multilineTextAlignment(.center)
-                            .padding(.horizontal)
                         Text("Get Quick Nutritional Information and Analysis By Scanning Product Barcode")
-                            .font(.body)
-                            .multilineTextAlignment(.center)
-                            .padding(.horizontal)
+                            .font(.headline)
+                            .multilineTextAlignment(.leading)
 
                         // Instructions
                         VStack(alignment: .leading, spacing: 8) {
@@ -81,10 +83,10 @@ struct HomeView: View {
                         }
                     }
                     .padding()
-                    .background(Color(UIColor.secondarySystemBackground))
-                    .cornerRadius(8)
                 }
                 
+                
+                Divider()
                 
                 Spacer()
 

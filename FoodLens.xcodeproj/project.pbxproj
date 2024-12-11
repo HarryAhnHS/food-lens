@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E30031A72D09576A00BD9866 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E30031A62D09576A00BD9866 /* Kingfisher */; };
+		E30031AA2D098C8B00BD9866 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E30031A92D098C8B00BD9866 /* Social.framework */; };
 		E3AA90862D08105400FD609E /* FoodLensApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA90852D08105400FD609E /* FoodLensApp.swift */; };
 		E3AA90882D08105400FD609E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AA90872D08105400FD609E /* ContentView.swift */; };
 		E3AA908A2D08105600FD609E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3AA90892D08105600FD609E /* Assets.xcassets */; };
@@ -60,6 +61,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E30031A92D098C8B00BD9866 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		E3AA90822D08105400FD609E /* FoodLens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodLens.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3AA90852D08105400FD609E /* FoodLensApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodLensApp.swift; sourceTree = "<group>"; };
 		E3AA90872D08105400FD609E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				E3AA90C32D081C0D00FD609E /* GoogleSignInSwift in Frameworks */,
 				E3AA90B62D0816C100FD609E /* FirebaseAuth in Frameworks */,
 				E3AA90BA2D0816C100FD609E /* FirebaseFirestore in Frameworks */,
+				E30031AA2D098C8B00BD9866 /* Social.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +127,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E30031A82D098C8B00BD9866 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E30031A92D098C8B00BD9866 /* Social.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E3AA90792D08105400FD609E = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +143,7 @@
 				E3AA90952D08105600FD609E /* FoodLensTests */,
 				E3AA909F2D08105600FD609E /* FoodLensUITests */,
 				E3AA90832D08105400FD609E /* Products */,
+				E30031A82D098C8B00BD9866 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
