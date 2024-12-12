@@ -22,7 +22,10 @@ struct ProductDetailsView: View {
                 productImageSection
                 productHeadSection
                 saveButtonSection
-                shareButtonSection
+                HStack(spacing: 8) {
+                    shareButtonSection
+                    openFoodFactsLinkButtonSection
+                }
 
                 // Ingredients Button
                 if let ingredients = product.ingredients {
@@ -64,6 +67,7 @@ struct ProductDetailsView: View {
         .onAppear {
             if let search = searchHistoryViewModel.searches.first(where: { $0.barcode == product.code }) {
                 isSaved = search.isSaved
+                // Set isSaved to previous state if exists
             }
         }
     }
@@ -140,6 +144,27 @@ struct ProductDetailsView: View {
             .padding()
             .frame(maxWidth: .infinity)
             .background(Color.orange)
+            .foregroundColor(.white)
+            .cornerRadius(8)
+        }
+        .frame(maxWidth: .infinity)
+    }
+    
+    // Link to respctive openFoodFacts weblink with further facts
+    private var openFoodFactsLinkButtonSection: some View {
+        Button(action: {
+            if let url = URL(string: "https://world.openfoodfacts.org/product/\(product.code)") {
+                UIApplication.shared.open(url)
+            }
+        }) {
+            HStack {
+                Image(systemName: "link")
+                Text("View on OpenFoodFacts")
+                    .font(.caption)
+            }
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(Color.green)
             .foregroundColor(.white)
             .cornerRadius(8)
         }

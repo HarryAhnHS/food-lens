@@ -11,7 +11,7 @@ import FirebaseAuth
 
 struct HomeView: View {
     @EnvironmentObject var appState: AppState
-    @EnvironmentObject var searchHistoryViewModel: SearchHistoryViewModel
+    @EnvironmentObject var searchHistoryViewModel : SearchHistoryViewModel
 
     var body: some View {
         NavigationStack {
@@ -92,7 +92,7 @@ struct HomeView: View {
 
                 // Navigation Buttons
                 VStack(spacing: 20) {
-                    NavigationLink(destination: SearchHistoryView(searches: searchHistoryViewModel.searches, products: searchHistoryViewModel.products)) {
+                    NavigationLink(destination: SearchHistoryView()) {
                         Text("See Search History")
                             .frame(maxWidth: .infinity)
                             .padding()
@@ -101,7 +101,7 @@ struct HomeView: View {
                             .cornerRadius(8)
                     }
 
-                    NavigationLink(destination: SavedSearchView(searches: searchHistoryViewModel.searches, products: searchHistoryViewModel.products)) {
+                    NavigationLink(destination: SavedSearchView()) {
                         Text("See Saved Searches")
                             .frame(maxWidth: .infinity)
                             .padding()
@@ -114,9 +114,6 @@ struct HomeView: View {
                 Spacer()
             }
             .padding()
-            .onAppear {
-                searchHistoryViewModel.fetchSearches()
-            }
         }
     }
 

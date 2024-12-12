@@ -14,6 +14,11 @@ class SearchHistoryViewModel: ObservableObject {
     @Published var products: [Product] = [] // Array of fetched Product objects
 
     private let db = Firestore.firestore()
+    
+    // Initialize with fetched searches and set searches and products arrays
+    init() {
+        fetchSearches()
+    }
 
     //Fetch all searches for the current user from Firestore
     func fetchSearches() {
@@ -44,7 +49,6 @@ class SearchHistoryViewModel: ObservableObject {
 
                 DispatchQueue.main.async {
                     self.searches = fetchedSearches
-                    // Set searches array to fetched searches (search includes only barcode, timestamp, and isSaed
                     self.fetchProductsForSearches() // Call method to loop each search, call API, and set product array with Product objects
                 }
             }
@@ -55,23 +59,24 @@ class SearchHistoryViewModel: ObservableObject {
         products.removeAll() // Clear previous products
 
         let fetchGroup = DispatchGroup()
+        var fetchedProducts: [Product] = []
 
         for search in searches {
             fetchGroup.enter()
             fetchProductInfo(for: search.barcode) { product in
                 if var product = product {
-                    product.timestamp = search.timestamp // Set the timestamp from the corresponding search to product
-                    product.isSaved = search.isSaved // Set the timestamp from the corresponding search to product
-                    DispatchQueue.main.async {
-                        self.products.append(product)
-                    }
+                    product.timestamp = search.timestamp
+                    product.isSaved = search.isSaved
+                    fetchedProducts.append(product) // Append to the local array
                 }
                 fetchGroup.leave()
             }
         }
 
         fetchGroup.notify(queue: .main) {
-            print("Finished fetching all products")
+            self.products = fetchedProducts.sorted(by: { ($0.timestamp ?? Date()) > ($1.timestamp ?? Date()) })
+            // set vm products array with fetched products + sorted by timestamp
+            print("Products sorted by timestamp\(self.products)")
         }
     }
 
