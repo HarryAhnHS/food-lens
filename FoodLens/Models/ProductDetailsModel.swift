@@ -19,14 +19,22 @@ struct ProductResponse: Decodable {
     }
 }
 
-struct Product: Decodable, Identifiable {
+struct Product: Decodable, Identifiable, Hashable {
     var id: String { code } // barcode as unique identifier
     var timestamp: Date? = Date()
     var isSaved: Bool = false
     
     let code: String
-    let productName: String?
-    let brands: String?
+    var productName: String? {
+        didSet {
+            productName = productName?.capitalizedWords() // Auto capitalize using extension
+        }
+    }
+    var brands: String? {
+        didSet {
+            brands = brands?.capitalizedWords() // Auto capitalize using extension
+        }
+    }
     let categories: String?
     let labels: String?
     let ingredientsText: String?
@@ -40,6 +48,16 @@ struct Product: Decodable, Identifiable {
     let ecoscoreGrade: String?
     let imageUrl: String?
     let servingSize: String?
+
+    // Hashable conform functions
+    // Hash:into use barcode val
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(code)
+    }
+    // Implement Equatable conformance for Hashable
+    static func == (lhs: Product, rhs: Product) -> Bool {
+        return lhs.code == rhs.code
+    }
 
     enum CodingKeys: String, CodingKey {
         case code
@@ -61,10 +79,11 @@ struct Product: Decodable, Identifiable {
     }
 }
 
-struct Ingredient: Decodable {
-    let text: String
-}
 
+struct Ingredient: Decodable {
+    var text: String
+}
+    
 struct Nutriments: Decodable {
     let energyKcal: Double?
     let fat: Double?
@@ -74,19 +93,19 @@ struct Nutriments: Decodable {
     let fiber: Double?
     let proteins: Double?
     let carbohydrates: Double?
-
+    
     // Nutritional Score custom calculation -> based on average snack standards
     var nutritionalScore: Int {
         var score = 0
-
+        
         if let energy = energyKcal, energy > 200 { score += 1 }
         if let fat = fat, fat > 10 { score += 1 }
         if let sugars = sugars, sugars > 10 { score += 1 }
         if let salt = salt, salt > 1 { score += 1 }
-
+        
         return 5 - score // Higher is healthier (scale: 0-5)
     }
-
+    
     enum CodingKeys: String, CodingKey {
         case energyKcal = "energy-kcal_100g"
         case fat = "fat_100g"

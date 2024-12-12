@@ -154,13 +154,14 @@ struct ProductDetailsView: View {
     private var openFoodFactsLinkButtonSection: some View {
         Button(action: {
             if let url = URL(string: "https://world.openfoodfacts.org/product/\(product.code)") {
+                // Open link
                 UIApplication.shared.open(url)
             }
         }) {
             HStack {
                 Image(systemName: "link")
-                Text("View on OpenFoodFacts")
-                    .font(.caption)
+                Text("OpenFoodFacts")
+                    .font(.caption2)
             }
             .padding()
             .frame(maxWidth: .infinity)
@@ -172,17 +173,17 @@ struct ProductDetailsView: View {
     }
 
     private func ingredientsButtonSection(ingredients: [Ingredient]) -> some View {
-        let uniqueIngredients = Set(ingredients.map { $0.text.lowercased() })
-        let capitalizedIngredients = uniqueIngredients.map { $0.capitalized }.sorted()
-
+        let uniqueIngredients = Set(ingredients.map { $0.text }) // Use set to ignore duplicate ingredietns (the API is open database so duplicates are common)
+        print(uniqueIngredients)
+        
         return (
-            NavigationLink(destination: ProductIngredientsListView(ingredients: capitalizedIngredients)) {
+            NavigationLink(destination: ProductIngredientsListView(ingredients: Array(uniqueIngredients))) {
                 Text("View And Search Ingredients")
                     .font(.body)
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(Color(UIColor.secondarySystemBackground))
-                    .foregroundColor(.orange)
+                    .background(Color.blue)
+                    .foregroundColor(Color.white)
                     .cornerRadius(8)
             }
                 .frame(maxWidth: .infinity)

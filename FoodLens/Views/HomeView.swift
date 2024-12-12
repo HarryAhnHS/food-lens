@@ -90,37 +90,45 @@ struct HomeView: View {
                 
                 Spacer()
 
-                // Navigation Buttons
+                // Navigation Buttons - Provide each abstract list view with products from env variable
+                // Provide 2 navigation links
                 VStack(spacing: 20) {
-                    NavigationLink(destination: SearchHistoryView()) {
-                        Text("See Search History")
+                    let historyTitle = "Your Search History"
+                    let savedTitle = "Your Saved Searches"
+                    NavigationLink(value: searchHistoryViewModel.products) {
+                        Text(historyTitle)
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(Color.orange)
                             .foregroundColor(.white)
                             .cornerRadius(8)
                     }
+                    .navigationTitle(historyTitle)
 
-                    NavigationLink(destination: SavedSearchView()) {
-                        Text("See Saved Searches")
+                    NavigationLink(value: searchHistoryViewModel.products.filter {$0.isSaved}) {
+                        Text(savedTitle)
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(Color.blue)
                             .foregroundColor(.white)
                             .cornerRadius(8)
                     }
+                    .navigationTitle(savedTitle)
                 }
-
                 Spacer()
             }
             .padding()
+            .navigationDestination(for: [Product].self) { products in
+                SearchListView(products: products)
+            }
         }
     }
 
     func logout() {
         do {
-            try Auth.auth().signOut()
-            appState.isLoggedIn = false
+            try Auth.auth().signOut() // Signout Auth
+            appState.isLoggedIn = false // update appState for root to display login
+            
         } catch let signOutError as NSError {
             print("Error signing out: \(signOutError.localizedDescription)")
         }

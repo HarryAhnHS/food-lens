@@ -47,6 +47,10 @@ struct FoodLensApp: App {
                 MainTabView()
                     .environmentObject(appState)
                     .environmentObject(searchHistoryViewModel)
+                    .onAppear {
+                        searchHistoryViewModel.fetchSearches()
+                        // Fetch searches for logged in user to update viewModel
+                    }
             } else {
                 LoginView()
                     .environmentObject(appState)

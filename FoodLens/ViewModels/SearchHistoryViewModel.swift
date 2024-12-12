@@ -139,7 +139,5 @@ class SearchHistoryViewModel: ObservableObject {
             print("Error encoding search: \(error.localizedDescription)")
         }
     }
-    
-    
 }
 

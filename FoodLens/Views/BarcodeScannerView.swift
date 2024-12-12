@@ -133,6 +133,7 @@ struct BarcodeScannerView: View {
 
     private func handleScan() {
         if let code = viewModel.scannedCode {
+            // Fetch product info using helper function to parse data
             fetchProductInfo(for: code) { product in
                 if let product = product {
                     DispatchQueue.main.async {

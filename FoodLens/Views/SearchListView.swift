@@ -1,5 +1,5 @@
 //
-//  SearchHistoryView.swift
+//  SearchListView.swift
 //  FoodLens
 //
 //  Created by Harry Ahn on 10/12/2024.
@@ -7,18 +7,23 @@
 
 import SwiftUI
 
-struct SearchHistoryView: View {
+// General search list view displaying list of products passed as param
+// Used by Saved Search Views and Search History Views to display SearchItems
+
+struct SearchListView: View {
     @EnvironmentObject var searchHistoryViewModel : SearchHistoryViewModel
     @State private var searchText : String  = ""
     
+    let products : [Product] // pass in environement managed product array
+    
     var filteredProducts: [Product] {
         if searchText.isEmpty {
-            return searchHistoryViewModel.products
+            return products
         }
         else {
-            return searchHistoryViewModel.products.filter { product in
+            return products.filter { product in
                 if let productName = product.productName {
-                    return productName.lowercased().contains(searchText.lowercased())
+                    return productName.localizedCaseInsensitiveContains(searchText)
                 }
                 return false
             }
@@ -27,10 +32,10 @@ struct SearchHistoryView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            if filteredProducts.isEmpty {
-                Text("No search history available.")
+            if products.isEmpty {
+                Text("No searches available.")
                     .foregroundColor(.gray)
-            } 
+            }
             else {
                 // List all products with optional search filter
                 List(filteredProducts) { product in
@@ -39,7 +44,7 @@ struct SearchHistoryView: View {
                 }
                 .refreshable {
                     searchHistoryViewModel.fetchSearches()
-                    // Refreshable option - manually refresh to directly reflect changes
+                    // Refreshable  - manually refresh to directly reflect changes
                 }
                 .searchable(
                     text: $searchText,
@@ -49,6 +54,5 @@ struct SearchHistoryView: View {
                 .textInputAutocapitalization(.never)
             }
         }
-        .navigationTitle("Your Search History")
     }
 }
